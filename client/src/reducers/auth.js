@@ -7,7 +7,7 @@ const initialState = {
   user: null,
 };
 
-export default function (state = initialState, action) {
+function authReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -21,14 +21,17 @@ export default function (state = initialState, action) {
       };
 
     case REGISTER_FAIL:
-      localStorage.removeItem('token', payload.token);
+      localStorage.removeItem('token');
       return {
         ...state,
         token: null,
         isAuthenticated: false,
         loading: false,
+        user: null,
       };
     default:
       return state;
   }
 }
+
+export default authReducer;
