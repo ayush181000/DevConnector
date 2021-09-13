@@ -24,6 +24,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "browserslist": "^4.17.0",
     "concurrently": "^6.2.1",
     "nodemon": "^2.0.12"
   }
