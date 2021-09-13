@@ -113,7 +113,7 @@ router.post(
 );
 
 // @route     GET api/profile
-// @desc      Get all profile
+// @desc      Get all profiles
 // @access    Public
 
 router.get('/', async (req, res) => {
@@ -122,11 +122,11 @@ router.get('/', async (req, res) => {
     res.json(profiles);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send('Server Error');
   }
 });
 
-// @route     GET api/user/:user_id
+// @route     GET api/profile/user/:user_id
 // @desc      Get profile by user ID
 // @access    Public
 
