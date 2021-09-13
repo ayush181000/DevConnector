@@ -94,10 +94,12 @@ router.delete('/:id', auth, async (req, res) => {
     res.json({ msg: 'Post removed' });
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjectId')
-      return res.status(404).json({ msg: 'Post not found' });
+    if (err.kind === 'ObjectId') {
+      res.status(404).json({ msg: 'Post not found' });
+    } else {
+      res.status(500).send('Server Error');
+    }
   }
-  res.status(500).send('Server Error');
 });
 
 // @route     PUT api/posts/like/:id
@@ -191,7 +193,7 @@ router.post(
 );
 
 // @route     DELETE api/posts/comment/:id/:comment_id
-// @desc      Delete a post
+// @desc      Delete a comment
 // @access    Private
 
 router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
