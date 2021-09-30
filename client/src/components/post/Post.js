@@ -11,7 +11,7 @@ import CommentItem from './CommentItem';
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id);
-  }, [getPost]);
+  }, [getPost, match.params.id]);
   return loading || post === null ? (
     <Spinner />
   ) : (
@@ -21,7 +21,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       </Link>
       <PostItem post={post} showActions={false} />
       <CommentForm postId={post._id} />
-      <div className='comment'>
+      <div className='comments'>
         {post.comments.map((comment) => (
           <CommentItem key={comment._id} comment={comment} postId={post._id} />
         ))}
@@ -32,6 +32,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

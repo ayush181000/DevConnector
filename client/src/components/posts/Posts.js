@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getPosts } from '../../actions/post';
-import PostItem from './PostItem.js';
+import PostItem from './PostItem';
 import PostForm from './PostForm';
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
@@ -17,7 +17,8 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Fragment>
       <h1 className='large text-primary'>Post</h1>
       <p className='lead'>
-        <i className='fas fa-user'>Welcome to the community</i>
+        <i className='fas fa-user' />
+        Welcome to the community
       </p>
       <PostForm />
       <div className='posts'>

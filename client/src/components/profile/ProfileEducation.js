@@ -16,18 +16,16 @@ const ProfileEducation = ({
     </p>
     <p>
       <strong>Field Of Study : </strong>
-      {degree}
+      {fieldofstudy}
     </p>
-    {description && (
-      <p>
-        <strong>Description : </strong>
-        {description}
-      </p>
-    )}
+    <p>
+      <strong>Description : </strong>
+      {description}
+    </p>
   </div>
 );
 ProfileEducation.propTypes = {
-  education: PropTypes.array.isRequired,
+  education: PropTypes.object.isRequired,
 };
 
 export default ProfileEducation;

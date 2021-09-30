@@ -10,9 +10,9 @@ import Education from './Education';
 
 const Dashboard = ({
   getCurrentProfile,
-  profile: { profile, loading },
-  auth: { user },
   deleteAccount,
+  auth: { user },
+  profile: { profile, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -24,7 +24,8 @@ const Dashboard = ({
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i>Welcome {user && user.name}
+        <i className='fas fa-user' />
+        Welcome {user && user.name}
       </p>
       {profile !== null ? (
         <Fragment>

@@ -16,7 +16,7 @@ const initialState = {
   error: {},
 };
 
-export default function (state = initialState, action) {
+function postReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -48,19 +48,19 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+    case POST_ERROR:
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
+
     case UPDATE_LIKES:
       return {
         ...state,
         posts: state.posts.map((post) =>
           post._id === payload.id ? { ...post, likes: payload.likes } : post
         ),
-        loading: false,
-      };
-
-    case POST_ERROR:
-      return {
-        ...state,
-        error: payload,
         loading: false,
       };
 
@@ -87,3 +87,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default postReducer;
