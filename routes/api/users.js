@@ -7,13 +7,11 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const normalize = require('normalize-url');
 
-//Getting model here
 const User = require('../../models/User');
 
-// @route     POST api/users
-// @desc      Register User
-// @access    Public
-
+// @route    POST api/users
+// @desc     Register user
+// @access   Public
 router.post(
   '/',
   check('name', 'Name is required').notEmpty(),
@@ -22,7 +20,6 @@ router.post(
     'password',
     'Please enter a password with 6 or more characters'
   ).isLength({ min: 6 }),
-
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -32,7 +29,6 @@ router.post(
     const { name, email, password } = req.body;
 
     try {
-      //See if user exists
       let user = await User.findOne({ email });
 
       if (user) {
@@ -40,7 +36,7 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
       }
-      //Get users gravatar
+
       const avatar = normalize(
         gravatar.url(email, {
           s: '200',
@@ -56,16 +52,12 @@ router.post(
         avatar,
         password,
       });
-      //Encrypt the password
+
       const salt = await bcrypt.genSalt(10);
 
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
-
-      //Return jsonwebtoken
-
-      //Creating payload
 
       const payload = {
         user: {
