@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const User = require('../../models/User');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const auth = require('../../middleware/auth');
+const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
+
+const User = require('../../models/User');
 
 // @route     GET api/auth
 // @desc      Test route
@@ -34,7 +35,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
 
     try {
       //See if user exists
@@ -60,11 +61,10 @@ router.post(
         },
       };
 
-      //Change back to 3600
       jwt.sign(
         payload,
         config.get('jwtSecret'),
-        { expiresIn: 360000 },
+        { expiresIn: '5 days' },
         (err, token) => {
           if (err) throw err;
           res.json({ token });
