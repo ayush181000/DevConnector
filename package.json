@@ -8,7 +8,7 @@
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && rpm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Ayush Garg",
   "license": "ISC",
@@ -27,5 +27,9 @@
     "browserslist": "^4.17.0",
     "concurrently": "^6.2.1",
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "v16.10.0",
+    "npm": "7.24.1"
   }
 }
