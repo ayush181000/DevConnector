@@ -1,8 +1,9 @@
 # DevConnector
 
-> DevConnector is a social media application for developers
+Deployed Project
+> https://devconnector-ayush.herokuapp.com/
 
-This is a MERN stack application. It is a small social network app that includes authentication, profiles and forum posts.
+> DevConnector is a social media application for developers. This is a MERN stack application. It is a small social network app that includes authentication, profiles and forum posts.
 
 
 # Quick Start 🚀
